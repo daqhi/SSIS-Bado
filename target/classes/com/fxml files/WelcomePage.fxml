@@ -9,7 +9,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.MyController">
    <children>
-      <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="485.0" layoutX="106.0" layoutY="108.0" stroke="#dbdbdbaa" strokeType="INSIDE" width="800.0" />
+      <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="562.0" layoutX="106.0" layoutY="69.0" stroke="#dbdbdbaa" strokeType="INSIDE" width="800.0" />
       <Text layoutX="341.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME">
          <font>
             <Font name="System Bold" size="67.0" />
@@ -20,14 +20,14 @@
             <Font name="System Italic" size="23.0" />
          </font>
       </Text>
-      <Button fx:id="registerNewProgram" layoutX="348.0" layoutY="417.0" mnemonicParsing="false" onAction="#toProgramRegistration" style="-fx-background-color: &quot;007EA7&quot;;" text="REGISTER NEW PROGRAM" textFill="WHITE">
+      <Button fx:id="registerNewProgram" layoutX="348.0" layoutY="417.0" mnemonicParsing="false" onAction="#toProgramRegistration" prefWidth="200.0" style="-fx-background-color: &quot;007EA7&quot;;" text="REGISTER NEW PROGRAM" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="22.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button layoutX="354.0" layoutY="515.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="292.0" style="-fx-background-color: &quot;007EA7&quot;;" text="STUDENT DIRECTORY" textFill="WHITE">
+      <Button layoutX="354.0" layoutY="515.0" mnemonicParsing="false" prefWidth="200.0" style="-fx-background-color: &quot;007EA7&quot;;" text="STUDENT DIRECTORY" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="22.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Button>
       <Text fill="#0000005e" layoutX="492.0" layoutY="494.0" strokeType="OUTSIDE" strokeWidth="0.0" text="or">
@@ -37,9 +37,9 @@
       </Text>
       <Line endX="100.0" layoutX="381.0" layoutY="491.0" startX="-25.79998779296875" startY="3.0517578125E-5" stroke="#00a8e8" />
       <Line endX="100.0" layoutX="545.0" layoutY="490.0" startX="-25.79998779296875" startY="3.0517578125E-5" stroke="#00a8e8" />
-      <Button fx:id="registerNewStudent" layoutX="354.0" layoutY="316.0" mnemonicParsing="false" onAction="#toStudentRegistrationPage" style="-fx-background-color: &quot;007EA7&quot;;" text="REGISTER NEW STUDENT" textFill="WHITE">
+      <Button fx:id="registerNewStudent" layoutX="354.0" layoutY="316.0" mnemonicParsing="false" onAction="#toStudentRegistrationPage" prefWidth="200.0" style="-fx-background-color: &quot;007EA7&quot;;" text="REGISTER NEW STUDENT" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="22.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Button>
       <Text fill="#0000005e" layoutX="492.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="or">
