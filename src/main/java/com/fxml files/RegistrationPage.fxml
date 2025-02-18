@@ -19,14 +19,15 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.MyController">
    <children>
       <Rectangle arcHeight="5.0" fill="#007ea7" height="80.0" stroke="#ffffff00" strokeType="INSIDE" width="1000.0" />
-      <Text fill="WHITE" layoutX="345.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRATION FORM">
+      <Text fill="WHITE" layoutX="355.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="REGISTRATION FORM">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Text>
-      <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="291.0" layoutX="110.0" layoutY="104.0" stroke="#dbdbdbaa" strokeType="INSIDE" width="800.0" />
-      <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="254.0" layoutX="110.0" layoutY="415.0" stroke="#dbdbdbaa" strokeType="INSIDE" width="800.0" />
-      <VBox layoutX="159.0" layoutY="119.0" prefHeight="266.0" prefWidth="702.0">
+      <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="290.0" layoutX="50.0" layoutY="107.0" stroke="#dbdbdbaa" strokeType="INSIDE" width="900.0" />
+      <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="250.0" layoutX="51.0" layoutY="407.0" stroke="#dbdbdbaa" strokeType="INSIDE" width="445.0" />
+      <Rectangle arcHeight="15.0" arcWidth="15.0" fill="WHITE" height="250.0" layoutX="504.0" layoutY="407.0" stroke="#dbdbdbaa" strokeType="INSIDE" width="445.0" />
+      <VBox layoutX="158.0" layoutY="119.0" prefHeight="266.0" prefWidth="702.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Student Registration" textAlignment="CENTER">
                <font>
@@ -120,14 +121,14 @@
                         <Insets left="5.0" top="5.0" />
                      </GridPane.margin>
                   </Text>
-                  <ComboBox fx:id="programName" prefHeight="26.0" prefWidth="691.0" GridPane.rowIndex="1">
+                  <ComboBox fx:id="studentProgramName" editable="true" prefHeight="26.0" prefWidth="691.0" promptText="Select program" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin>
                   </ComboBox>
                </children>
             </GridPane>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#registerStudent" style="-fx-background-color: &quot;007EA7&quot;;" text="REGISTER STUDENT" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="registerStudentButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#registerStudent" style="-fx-background-color: &quot;007EA7&quot;;" text="REGISTER STUDENT" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -147,21 +148,24 @@
             <Insets left="10.0" right="10.0" />
          </opaqueInsets>
       </VBox>
-      <VBox layoutX="159.0" layoutY="436.0">
+      <VBox layoutX="516.0" layoutY="431.0" prefHeight="142.0" prefWidth="420.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Program Registration" textAlignment="CENTER">
                <font>
                   <Font size="25.0" />
                </font>
+               <VBox.margin>
+                  <Insets left="5.0" />
+               </VBox.margin>
             </Text>
-            <Line endX="600.0" startX="-100.0" stroke="#00a8e8">
+            <Line endX="315.0" startX="-100.0" stroke="#00a8e8">
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin></Line>
-            <GridPane prefWidth="702.0">
+            <GridPane>
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.59998779296876" minWidth="10.0" prefWidth="467.8" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="345.39996337890625" minWidth="10.0" prefWidth="234.2" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.59998779296876" minWidth="10.0" prefWidth="297.1999755859375" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="487.1999877929687" minWidth="10.0" prefWidth="98.00002441406252" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
@@ -175,7 +179,7 @@
                         <Insets left="5.0" top="5.0" />
                      </GridPane.margin>
                   </Text>
-                  <ComboBox fx:id="collegeName" prefHeight="26.0" prefWidth="691.0" GridPane.rowIndex="1">
+                  <ComboBox fx:id="collegeName" editable="true" prefHeight="26.0" prefWidth="326.0" promptText="Select College" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin>
@@ -195,17 +199,17 @@
                         <Insets left="5.0" top="5.0" />
                      </GridPane.margin>
                   </Text>
-                  <ComboBox prefHeight="26.0" prefWidth="691.0" GridPane.rowIndex="3">
+                  <ComboBox fx:id="programName" editable="true" prefHeight="26.0" prefWidth="336.0" promptText="Select Program" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin>
                   </ComboBox>
-                  <ComboBox fx:id="collegeCode" prefHeight="26.0" prefWidth="691.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <ComboBox fx:id="collegeCode" editable="true" prefHeight="26.0" prefWidth="127.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin>
                   </ComboBox>
-                  <ComboBox fx:id="programCode" prefHeight="26.0" prefWidth="691.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                  <ComboBox fx:id="programCode" editable="true" prefHeight="26.0" prefWidth="135.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin>
@@ -214,7 +218,7 @@
             </GridPane>
          </children>
       </VBox>
-      <Button fx:id="registerProgramButton" alignment="CENTER" contentDisplay="CENTER" layoutX="409.0" layoutY="609.0" mnemonicParsing="false" style="-fx-background-color: &quot;007EA7&quot;;" text="REGISTER PROGRAM" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="registerProgramButton" alignment="CENTER" contentDisplay="CENTER" layoutX="625.0" layoutY="593.0" mnemonicParsing="false" onAction="#registerProgram" style="-fx-background-color: &quot;007EA7&quot;;" text="REGISTER PROGRAM" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
@@ -230,6 +234,68 @@
          <font>
             <Font name="Arial Black" size="10.0" />
          </font>
+      </Button>
+      <VBox layoutX="63.0" layoutY="431.0" prefHeight="142.0" prefWidth="420.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="College Registration" textAlignment="CENTER">
+               <font>
+                  <Font size="25.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="5.0" />
+               </VBox.margin>
+            </Text>
+            <Line endX="315.0" startX="-100.0" stroke="#00a8e8">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Line>
+            <GridPane>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="477.59998779296876" minWidth="10.0" prefWidth="297.1999755859375" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="College Name">
+                     <GridPane.margin>
+                        <Insets left="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <ComboBox fx:id="colCollegeName" editable="true" prefHeight="26.0" prefWidth="445.0" promptText="Select College Name" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="College Code" GridPane.rowIndex="2">
+                     <GridPane.margin>
+                        <Insets left="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <ComboBox fx:id="colCollegeCode" editable="true" prefHeight="26.0" prefWidth="426.0" promptText="Select College Code" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin>
+                  </ComboBox>
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+      <Button fx:id="registerCollegeButton" alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="593.0" mnemonicParsing="false" onAction="#registerCollege" style="-fx-background-color: &quot;007EA7&quot;;" text="REGISTER COLLEGE" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <effect>
+            <DropShadow height="25.0" radius="12.0" width="25.0">
+               <color>
+                  <Color red="0.5052631497383118" green="0.5052631497383118" blue="0.5052631497383118" />
+               </color>
+            </DropShadow>
+         </effect>
       </Button>
    </children>
 </AnchorPane>
