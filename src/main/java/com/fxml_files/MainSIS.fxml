@@ -1,0 +1,708 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #dddddd;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.SceneController">
+   <children>
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="589.0" layoutX="18.0" layoutY="90.0" stroke="TRANSPARENT" strokeType="INSIDE" width="250.0">
+         <effect>
+            <DropShadow height="19.86" radius="8.545" width="16.32">
+               <color>
+                  <Color opacity="0.4202127456665039" />
+               </color>
+            </DropShadow>
+         </effect></Rectangle>
+      <TabPane fx:id="registrationForms" layoutX="18.0" layoutY="123.0" prefHeight="555.0" prefWidth="250.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMaxWidth="50.0">
+        <tabs>
+          <Tab fx:id="studentReg" text="Student">
+               <content>
+                  <VBox prefHeight="526.0" prefWidth="261.0">
+                     <children>
+                        <Line endX="150.0" startX="-100.0" stroke="#007ea7" strokeWidth="2.0" />
+                        <GridPane maxWidth="250.0" prefWidth="250.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="450.0" minWidth="10.0" prefWidth="450.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Text fill="#007ea7" strokeType="OUTSIDE" strokeWidth="0.0" text="ID Number">
+                                 <GridPane.margin>
+                                    <Insets top="5.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="idNum" promptText="YYYY-NNNN" GridPane.rowIndex="1" />
+                              <TextField fx:id="firstName" promptText="Enter First Name" GridPane.rowIndex="3" />
+                              <TextField fx:id="lastName" promptText="Enter Last Name" GridPane.rowIndex="5" />
+                              <ComboBox fx:id="year" prefHeight="26.0" prefWidth="498.0" promptText="Select Year Level" GridPane.rowIndex="7" />
+                              <ComboBox fx:id="sex" prefHeight="26.0" prefWidth="591.0" promptText="Select Sex" GridPane.rowIndex="9" />
+                              <Text fill="#007ea7" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets top="5.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#007ea7" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets top="5.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#007ea7" strokeType="OUTSIDE" strokeWidth="0.0" text="Year Level" GridPane.rowIndex="6">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets top="5.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#007ea7" strokeType="OUTSIDE" strokeWidth="0.0" text="Sex" GridPane.rowIndex="8">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets top="5.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#007ea7" strokeType="OUTSIDE" strokeWidth="0.0" text="College" GridPane.rowIndex="10">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets top="5.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#007ea7" strokeType="OUTSIDE" strokeWidth="0.0" text="Program" GridPane.rowIndex="12">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets top="5.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <TextField fx:id="studentCollege" promptText="Enter College" GridPane.rowIndex="11" />
+                              <TextField fx:id="studentProgram" promptText="Enter Program" GridPane.rowIndex="13" />
+                           </children>
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" top="20.0" />
+                           </VBox.margin>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </GridPane>
+                        <GridPane prefWidth="250.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Button fx:id="regStudent" contentDisplay="CENTER" maxHeight="40.0" mnemonicParsing="false" onAction="#registerStudent" prefHeight="32.0" prefWidth="209.0" style="-fx-background-color: #007ea7;" text="Register Student" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="50.0" right="50.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow>
+                                       <color>
+                                          <Color red="0.47999998927116394" green="0.47999998927116394" blue="0.47999998927116394" opacity="0.9673252701759338" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                                 <padding>
+                                    <Insets bottom="2.0" top="2.0" />
+                                 </padding>
+                              </Button>
+                              <Button fx:id="updtStudent" contentDisplay="CENTER" maxHeight="40.0" mnemonicParsing="false" onAction="#updateStudent" prefHeight="32.0" prefWidth="264.0" style="-fx-background-color: #007ea7;" text="Update Student" textAlignment="CENTER" textFill="WHITE" visible="false" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow>
+                                       <color>
+                                          <Color red="0.47999998927116394" green="0.47999998927116394" blue="0.47999998927116394" opacity="0.9673252701759338" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                                 <padding>
+                                    <Insets bottom="2.0" top="2.0" />
+                                 </padding>
+                                 <GridPane.margin>
+                                    <Insets left="50.0" right="50.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="clearStudentFormButton" contentDisplay="CENTER" maxHeight="40.0" mnemonicParsing="false" onAction="#clearSForm" prefHeight="32.0" prefWidth="209.0" style="-fx-background-color: #007ea7;" text="Clear Form" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow>
+                                       <color>
+                                          <Color red="0.47999998927116394" green="0.47999998927116394" blue="0.47999998927116394" opacity="0.9673252701759338" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                                 <padding>
+                                    <Insets bottom="2.0" top="2.0" />
+                                 </padding>
+                                 <GridPane.margin>
+                                    <Insets left="50.0" right="50.0" />
+                                 </GridPane.margin>
+                              </Button>
+                           </children>
+                        </GridPane>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </VBox>
+               </content>
+          </Tab>
+            <Tab fx:id="programReg" text="Program">
+               <content>
+                  <VBox prefHeight="530.0" prefWidth="302.0">
+                     <children>
+                        <Line endX="150.0" startX="-100.0" stroke="#007ea7" strokeWidth="2.0" />
+                        <GridPane prefWidth="400.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="450.0" minWidth="10.0" prefWidth="450.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Text fill="#007ea7" strokeType="OUTSIDE" strokeWidth="0.0" text="College Code">
+                                 <GridPane.margin>
+                                    <Insets top="5.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="progCollege" promptText="Enter College Code" GridPane.rowIndex="1" />
+                              <TextField fx:id="programCode" promptText="Enter Program Code" GridPane.rowIndex="3" />
+                              <TextField fx:id="programName" promptText="Enter Program Name" GridPane.rowIndex="5" />
+                              <Text fill="#007ea7" strokeType="OUTSIDE" strokeWidth="0.0" text="Program Code" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets top="5.0" />
+                                 </GridPane.margin>
+                              </Text>
+                              <Text fill="#007ea7" strokeType="OUTSIDE" strokeWidth="0.0" text="Program Name" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets top="5.0" />
+                                 </GridPane.margin>
+                              </Text>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" top="20.0" />
+                           </VBox.margin>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </GridPane>
+                        <GridPane prefWidth="302.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Button fx:id="regProgram" contentDisplay="CENTER" maxHeight="40.0" mnemonicParsing="false" onAction="#registerProgram" prefHeight="32.0" prefWidth="209.0" style="-fx-background-color: #007ea7;" text="Register Program" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="50.0" right="50.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow>
+                                       <color>
+                                          <Color red="0.47999998927116394" green="0.47999998927116394" blue="0.47999998927116394" opacity="0.9673252701759338" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                                 <padding>
+                                    <Insets bottom="2.0" top="2.0" />
+                                 </padding>
+                              </Button>
+                              <Button fx:id="updtProgram" contentDisplay="CENTER" maxHeight="40.0" mnemonicParsing="false" onAction="#updateProgram" prefHeight="32.0" prefWidth="264.0" style="-fx-background-color: #007ea7;" text="Update Program" textAlignment="CENTER" textFill="WHITE" visible="false" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow>
+                                       <color>
+                                          <Color red="0.47999998927116394" green="0.47999998927116394" blue="0.47999998927116394" opacity="0.9673252701759338" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                                 <padding>
+                                    <Insets bottom="2.0" top="2.0" />
+                                 </padding>
+                                 <GridPane.margin>
+                                    <Insets left="50.0" right="50.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="clearProgramFormButton" contentDisplay="CENTER" maxHeight="40.0" mnemonicParsing="false" onAction="#clearPForm" prefHeight="32.0" prefWidth="209.0" style="-fx-background-color: #007ea7;" text="Clear Form" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow>
+                                       <color>
+                                          <Color red="0.47999998927116394" green="0.47999998927116394" blue="0.47999998927116394" opacity="0.9673252701759338" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                                 <padding>
+                                    <Insets bottom="2.0" top="2.0" />
+                                 </padding>
+                                 <GridPane.margin>
+                                    <Insets left="50.0" right="50.0" />
+                                 </GridPane.margin>
+                              </Button>
+                           </children>
+                        </GridPane>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab fx:id="collegeReg" text="College">
+               <content>
+                  <VBox prefHeight="530.0" prefWidth="302.0">
+                     <children>
+                        <Line endX="150.0" startX="-100.0" stroke="#007ea7" strokeWidth="2.0" />
+                        <GridPane prefWidth="400.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="450.0" minWidth="10.0" prefWidth="450.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Text fill="#007ea7" strokeType="OUTSIDE" strokeWidth="0.0" text="College Code">
+                                 <GridPane.margin>
+                                    <Insets top="5.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Text>
+                              <TextField fx:id="collegeCode" promptText="Enter College Code" GridPane.rowIndex="1" />
+                              <TextField fx:id="collegeName" promptText="Enter College Name" GridPane.rowIndex="3" />
+                              <Text fill="#007ea7" strokeType="OUTSIDE" strokeWidth="0.0" text="College Name" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <GridPane.margin>
+                                    <Insets top="5.0" />
+                                 </GridPane.margin>
+                              </Text>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="20.0" right="20.0" top="20.0" />
+                           </VBox.margin>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </GridPane>
+                        <GridPane prefWidth="302.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Button fx:id="regCollege" contentDisplay="CENTER" maxHeight="40.0" mnemonicParsing="false" onAction="#registerCollege" prefHeight="32.0" prefWidth="209.0" style="-fx-background-color: #007ea7;" text="Register College" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="1">
+                                 <GridPane.margin>
+                                    <Insets left="50.0" right="50.0" />
+                                 </GridPane.margin>
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow>
+                                       <color>
+                                          <Color red="0.47999998927116394" green="0.47999998927116394" blue="0.47999998927116394" opacity="0.9673252701759338" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                                 <padding>
+                                    <Insets bottom="2.0" top="2.0" />
+                                 </padding>
+                              </Button>
+                              <Button fx:id="updtCollege" contentDisplay="CENTER" maxHeight="40.0" mnemonicParsing="false" onAction="#updateCollege" prefHeight="32.0" prefWidth="264.0" style="-fx-background-color: #007ea7;" text="Update College" textAlignment="CENTER" textFill="WHITE" visible="false" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow>
+                                       <color>
+                                          <Color red="0.47999998927116394" green="0.47999998927116394" blue="0.47999998927116394" opacity="0.9673252701759338" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                                 <padding>
+                                    <Insets bottom="2.0" top="2.0" />
+                                 </padding>
+                                 <GridPane.margin>
+                                    <Insets left="50.0" right="50.0" />
+                                 </GridPane.margin>
+                              </Button>
+                              <Button fx:id="clearCollegeFormButton" contentDisplay="CENTER" maxHeight="40.0" mnemonicParsing="false" onAction="#clearCForm" prefHeight="32.0" prefWidth="209.0" style="-fx-background-color: #007ea7;" text="Clear Form" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                                 <effect>
+                                    <DropShadow>
+                                       <color>
+                                          <Color red="0.47999998927116394" green="0.47999998927116394" blue="0.47999998927116394" opacity="0.9673252701759338" />
+                                       </color>
+                                    </DropShadow>
+                                 </effect>
+                                 <padding>
+                                    <Insets bottom="2.0" top="2.0" />
+                                 </padding>
+                                 <GridPane.margin>
+                                    <Insets left="50.0" right="50.0" />
+                                 </GridPane.margin>
+                              </Button>
+                           </children>
+                        </GridPane>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </VBox>
+               </content>
+            </Tab>
+        </tabs>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </TabPane>
+      <Rectangle fill="#007ea7" height="70.0" stroke="#ffffff00" strokeType="INSIDE" strokeWidth="0.0" width="1000.0">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.4962006211280823" />
+               </color>
+            </DropShadow>
+         </effect></Rectangle>
+      <Text fill="WHITE" layoutX="300.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Information System">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Text>
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="WHITE" height="589.0" layoutX="283.0" layoutY="90.0" stroke="TRANSPARENT" strokeType="INSIDE" width="700.0">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.4498480260372162" />
+               </color>
+            </DropShadow>
+         </effect></Rectangle>
+      <TabPane fx:id="directories" layoutX="283.0" layoutY="123.0" prefHeight="534.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="50.0" tabMaxWidth="50.0">
+         <tabs>
+            <Tab fx:id="studentDir" text="Student">
+               <content>
+                  <VBox prefHeight="561.0">
+                     <children>
+                        <Line endX="600.0" startX="-100.0" stroke="#007ea7" strokeWidth="2.0" />
+                        <GridPane prefHeight="504.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <GridPane>
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.0" minWidth="10.0" prefWidth="500.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="50.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <TextField fx:id="searchStudent" prefHeight="26.0" prefWidth="531.0" promptText="Search here..." />
+                                    <Button fx:id="searchStudentButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="1.0" maxHeight="10.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#searchStudentDir" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #007ea7;" text="Search" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <effect>
+                                          <DropShadow>
+                                             <color>
+                                                <Color red="0.4699999988079071" green="0.4699999988079071" blue="0.4699999988079071" opacity="0.0" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                       <GridPane.margin>
+                                          <Insets bottom="1.0" left="5.0" />
+                                       </GridPane.margin>
+                                    </Button>
+                                 </children>
+                              </GridPane>
+                              <TableView fx:id="studentTable" prefHeight="196.0" GridPane.rowIndex="1">
+                                <columns>
+                                  <TableColumn fx:id="idColumn" editable="false" prefWidth="63.0" resizable="false" text="ID Num" />
+                                  <TableColumn fx:id="firstNameColumn" prefWidth="90.0" resizable="false" text="First Name" />
+                                    <TableColumn fx:id="lastNameColumn" prefWidth="90.0" resizable="false" text="Last Name" />
+                                    <TableColumn fx:id="yearColumn" prefWidth="30.0" resizable="false" text="Year" />
+                                    <TableColumn fx:id="sexColumn" prefWidth="50.0" resizable="false" text="Sex" />
+                                    <TableColumn fx:id="studCollegeCodeColumn" prefWidth="109.60009765625" resizable="false" text="College" />
+                                    <TableColumn fx:id="studProgramCodeColumn" prefWidth="135.99990844726562" resizable="false" text="Program" />
+                                    <TableColumn fx:id="studentActionColumn" prefWidth="105.0" resizable="false" />
+                                </columns>
+                              </TableView>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </GridPane>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab fx:id="programDir" text="Program">
+               <content>
+                  <VBox prefHeight="561.0" prefWidth="403.0">
+                     <children>
+                        <Line endX="600.0" startX="-100.0" stroke="#007ea7" strokeWidth="2.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></Line>
+                        <GridPane prefHeight="531.0" prefWidth="631.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <TableView fx:id="programTable" prefHeight="168.0" prefWidth="631.0" GridPane.rowIndex="1">
+                                 <columns>
+                                    <TableColumn fx:id="progCollegeColumn" prefWidth="85.59997403621674" text="College Code" />
+                                    <TableColumn fx:id="progProgramCodeColumn" prefWidth="104.00000762939453" text="Program Code" />
+                                    <TableColumn fx:id="progProgramNameColumn" prefWidth="363.1999206542969" text="Program Name" />
+                                    <TableColumn fx:id="programActionColumn" prefWidth="295.99993896484375" />
+                                 </columns>
+                              </TableView>
+                              <GridPane>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.0" minWidth="10.0" prefWidth="500.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="50.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <TextField fx:id="searchProgram" prefHeight="26.0" prefWidth="531.0" promptText="Search here..." />
+                                    <Button fx:id="searchProgramButton" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="1.0" maxHeight="10.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#searchProgramDir" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #007ea7;" text="Search" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <effect>
+                                          <DropShadow>
+                                             <color>
+                                                <Color red="0.4699999988079071" green="0.4699999988079071" blue="0.4699999988079071" opacity="0.0" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                       <GridPane.margin>
+                                          <Insets bottom="1.0" left="5.0" />
+                                       </GridPane.margin>
+                                    </Button>
+                                 </children>
+                              </GridPane>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </GridPane>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab fx:id="collegeDir" text="College">
+               <content>
+                  <VBox prefHeight="506.0" prefWidth="438.0">
+                     <children>
+                        <Line endX="600.0" startX="-100.0" stroke="#007ea7" strokeWidth="2.0" />
+                        <GridPane prefHeight="517.0" prefWidth="631.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <TableView fx:id="collegeTable" prefHeight="200.0" prefWidth="642.0" GridPane.rowIndex="1">
+                                 <columns>
+                                    <TableColumn fx:id="colCollegeCodeColumn" prefWidth="205.0" text="College Code" />
+                                    <TableColumn fx:id="colCollegeNameColumn" prefWidth="347.2000427246094" text="College Name" />
+                                    <TableColumn fx:id="collegeActionColumn" prefWidth="120.800048828125" />
+                                 </columns>
+                              </TableView>
+                              <GridPane>
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.0" minWidth="10.0" prefWidth="500.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="50.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <TextField fx:id="searchCollege" prefHeight="26.0" prefWidth="531.0" promptText="Search here..." />
+                                    <Button fx:id="searchCollegeButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="10.0" mnemonicParsing="false" onAction="#searchCollegeDir" prefHeight="10.0" prefWidth="100.0" style="-fx-background-color: #007ea7;" text="Search" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                       <effect>
+                                          <DropShadow>
+                                             <color>
+                                                <Color red="0.4699999988079071" green="0.4699999988079071" blue="0.4699999988079071" opacity="0.0" />
+                                             </color>
+                                          </DropShadow>
+                                       </effect>
+                                       <GridPane.margin>
+                                          <Insets bottom="1.0" left="5.0" />
+                                       </GridPane.margin>
+                                    </Button>
+                                 </children>
+                              </GridPane>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </GridPane>
+                     </children>
+                  </VBox>
+               </content>
+            </Tab>
+         </tabs>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <opaqueInsets>
+            <Insets right="10.0" />
+         </opaqueInsets>
+      </TabPane>
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#007ea7" height="23.0" layoutX="17.0" layoutY="90.0" stroke="TRANSPARENT" strokeType="INSIDE" width="252.0" />
+      <Rectangle fill="#007ea7" height="23.0" layoutX="17.0" layoutY="100.0" stroke="TRANSPARENT" strokeType="INSIDE" width="252.0" />
+      <Text fill="WHITE" layoutX="54.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registration Forms">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+      <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#007ea7" height="23.0" layoutX="282.0" layoutY="90.0" stroke="TRANSPARENT" strokeType="INSIDE" width="702.0" />
+      <Rectangle fill="#007ea7" height="23.0" layoutX="282.0" layoutY="100.0" stroke="TRANSPARENT" strokeType="INSIDE" width="702.0" />
+      <Text fill="WHITE" layoutX="596.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Directories">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Text>
+   </children>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
+</AnchorPane>
