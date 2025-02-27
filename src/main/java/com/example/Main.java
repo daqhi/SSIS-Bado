@@ -13,7 +13,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("StudentRegistration.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/fxml files/RegistrationPage.fxml"));
         Parent root = loader.load();
 
         MyController controller = loader.getController();
