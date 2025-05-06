@@ -81,11 +81,11 @@ public class SceneController extends MainController implements Initializable{
             showAlert(Alert.AlertType.ERROR, "Error", "Please fill in all required fields.");
         } else if (!id.matches("\\d{4}-\\d{4}")) { 
             showAlert(Alert.AlertType.ERROR, "Error", "Please follow ID Number format.\nFormat: YYYY-NNNN");
-        } else if (!inputExists(program, "/csv_files/Program.csv", 1) && !inputExists(college, "/csv_files/College.csv", 0)) {
+        } else if (!inputExists(program, "/csv_files/Program.csv", 0) && !inputExists(college, "/csv_files/College.csv", 0)) {
             showAlert(Alert.AlertType.ERROR, "Error", "Program '" + college + " and " + program + "' does not exist. Please register it first.");
         } else if (!inputExists(college, "/csv_files/College.csv", 0)) {
             showAlert(Alert.AlertType.ERROR, "Error", "College '" + college + "' does not exist. Please register it first.");
-        } else if (!inputExists(program, "/csv_files/Program.csv", 1)){
+        } else if (!inputExists(program, "/csv_files/Program.csv", 0)){
             showAlert(Alert.AlertType.ERROR, "Error", "Program '" + program + "' does not exist. Please register it first.");
         } else if (isValueTakenInCSV(id, 0, StudentFilePath)){ // checks for duplicates
             showAlert(Alert.AlertType.ERROR, "Error", "ID Number already exists. \nFailed to register student.");
@@ -97,38 +97,6 @@ public class SceneController extends MainController implements Initializable{
                 this::clearStudentForm);
             setupStudentTable();
         }              
-    }
-
-    @FXML private void updateStudent(){
-        String id = idNum.getText().trim();
-        String last = lastName.getText().trim();
-        String first = firstName.getText().trim();
-        String gender = sex.getValue();
-        String yearLvl = year.getValue();
-        String program = studentProgram.getText().trim();
-        String college = studentCollege.getText().trim();
-
-        if (isEmptyField(id, last, first, gender, yearLvl, program, college)) {
-            showAlert(Alert.AlertType.ERROR, "Error", "Please fill in all required fields.");
-            return;
-        } else if (!id.matches("\\d{4}-\\d{4}")) {
-            showAlert(Alert.AlertType.ERROR, "Error", "Please follow ID Number format.\nFormat: YYYY-NNNN");
-            return;
-        }
-
-        boolean updated = updateStudentInCSV(editingStudentId, id, last, first, gender, yearLvl, program, college, StudentFilePath);
-        if (updated) {
-            showAlert(Alert.AlertType.INFORMATION, "Success", "Student updated successfully!");
-            clearStudentForm();
-            editingStudentId = null;
-            updtStudent.setDisable(true);
-            updtStudent.setVisible(false);
-            regStudent.setDisable(false);
-            regStudent.setVisible(true);
-            setupStudentTable(); // reload student table
-        } else {
-            showAlert(Alert.AlertType.ERROR, "Error", "Failed to update student.");
-        } 
     }
 
     @FXML private void registerProgram() {
@@ -159,48 +127,6 @@ public class SceneController extends MainController implements Initializable{
         }
     }
 
-    @FXML private void updateProgram() {
-        String college = progCollege.getText().trim();
-        String code = programCode.getText().trim();
-        String name = programName.getText().trim();
-
-        if (isEmptyField(college, code, name)) {
-            showAlert(Alert.AlertType.ERROR, "Error", "Please fill in all required fields.");
-            return;
-        }
-        String oldCode = editingProgramId;
-        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmationAlert.setTitle("Confirm Edit");
-        confirmationAlert.setHeaderText("Are you sure you want to edit this item?");
-        confirmationAlert.setContentText("Click OK to proceed or Cancel to abort.");
-        confirmationAlert.showAndWait().ifPresent(response -> {
-            if (response.getButtonData() == ButtonBar.ButtonData.OK_DONE) {
-                if (!inputExists(college, "/csv_files/College.csv", 0)) {
-                    showAlert(Alert.AlertType.ERROR, "Error", "College code " + college + " does not exist. Please register it first.");
-                    clearCollegeForm();
-                } else {
-                    boolean updated = updateProgramInCSV(oldCode, college, code, name, ProgramFilePath);
-                    if (updated) {
-                        displayNewValueOnProgramEdit(oldCode);
-                        showAlert(Alert.AlertType.INFORMATION, "Success", "Program updated successfully!");
-                        clearProgramForm();
-                        editingProgramId = null;
-                        updtProgram.setDisable(true);
-                        updtProgram.setVisible(false);
-                        regProgram.setDisable(false);
-                        regProgram.setVisible(true);
-                        setupProgramTable();
-                    } else {
-                        showAlert(Alert.AlertType.ERROR, "Error", "Failed to update program.");
-                    }
-                }
-  
-            } else {
-                System.out.println("Update canceled by user.");
-            }
-        });
-    }
-
     @FXML private void registerCollege() {
         String colCode = collegeCode.getText();
         String colName = collegeName.getText();
@@ -223,6 +149,98 @@ public class SceneController extends MainController implements Initializable{
         }        
     }
 
+    @FXML private void updateStudent(){
+        String id = idNum.getText().trim();
+        String last = lastName.getText().trim();
+        String first = firstName.getText().trim();
+        String gender = sex.getValue();
+        String yearLvl = year.getValue();
+        String program = studentProgram.getText().trim();
+        String college = studentCollege.getText().trim();
+
+        if (isEmptyField(id, last, first, gender, yearLvl, program, college)) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Please fill in all required fields.");
+            return;
+        } else if (!id.matches("\\d{4}-\\d{4}")) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Please follow ID Number format.\nFormat: YYYY-NNNN");
+            return;
+        } 
+
+        String oldId = editingStudentId;
+
+        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmationAlert.setTitle("Confirm Edit");
+        confirmationAlert.setHeaderText("Are you sure you want to edit this student?");
+        confirmationAlert.setContentText("Click OK to proceed or Cancel to abort.");
+        confirmationAlert.showAndWait().ifPresent(response -> {
+            if (response.getButtonData() == ButtonBar.ButtonData.OK_DONE) {
+                boolean updated = updateStudentInCSV(oldId, id, last, first, gender, yearLvl, program, college, StudentFilePath);
+                if (updated) {
+                    showAlert(Alert.AlertType.INFORMATION, "Success", "Student updated successfully!");
+                    clearStudentForm();
+                    editingStudentId = null;
+                    updtStudent.setDisable(true);
+                    updtStudent.setVisible(false);
+                    regStudent.setDisable(false);
+                    regStudent.setVisible(true);
+                    setupStudentTable(); // reload student table
+                } else {
+                    showAlert(Alert.AlertType.ERROR, "Error", "Failed to update student.");
+                } 
+            }
+        });
+    }
+
+    @FXML private void updateProgram() {
+        String college = progCollege.getText().trim();
+        String code = programCode.getText().trim();
+        String name = programName.getText().trim();
+
+        if (isEmptyField(college, code, name)) {
+            showAlert(Alert.AlertType.ERROR, "Error", "Please fill in all required fields.");
+            return;
+        } 
+        String oldCode = editingProgramId;
+
+        if(inputExists(code, ProgramFilePath, 0)){
+            showAlert(Alert.AlertType.ERROR, "Error", "Program code '" + oldCode + "' already exist.");
+        } else if (!inputExists(name, ProgramFilePath, 1)){
+            showAlert(Alert.AlertType.ERROR, "Error", "Program name '" + name + "' already exist");
+        } else {
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Confirm Edit");
+            confirmationAlert.setHeaderText("Are you sure you want to edit this program?");
+            confirmationAlert.setContentText("Click OK to proceed or Cancel to abort.");
+            confirmationAlert.showAndWait().ifPresent(response -> {
+                if (response.getButtonData() == ButtonBar.ButtonData.OK_DONE) {
+                    if (!inputExists(college, "/csv_files/College.csv", 0)) {
+                        showAlert(Alert.AlertType.ERROR, "Error", "College code " + college + " does not exist. Please register it first.");
+                        clearCollegeForm();
+                    } else {
+                        boolean updated = updateProgramInCSV(oldCode, college, code, name, ProgramFilePath);
+                        if (updated) {
+                            displayNewValueOnProgramEdit(oldCode);
+                            showAlert(Alert.AlertType.INFORMATION, "Success", "Program updated successfully!");
+                            clearProgramForm();
+                            editingProgramId = null;
+                            updtProgram.setDisable(true);
+                            updtProgram.setVisible(false);
+                            regProgram.setDisable(false);
+                            regProgram.setVisible(true);
+                            setupProgramTable();
+                        } else {
+                            showAlert(Alert.AlertType.ERROR, "Error", "Failed to update program.");
+                        }
+                    }
+    
+                } else {
+                    System.out.println("Update canceled by user.");
+                }        
+            });
+        }
+    }
+
+
     @FXML private void updateCollege() {
         String newCode = collegeCode.getText().trim();
         String name = collegeName.getText().trim();
@@ -232,28 +250,37 @@ public class SceneController extends MainController implements Initializable{
         }
 
         String oldCode = editingCollegeId;
-        Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmationAlert.setTitle("Confirm Edit");
-        confirmationAlert.setHeaderText("Are you sure you want to edit this item?");
-        confirmationAlert.setContentText("Click OK to proceed or Cancel to abort.");
-        confirmationAlert.showAndWait().ifPresent(response -> {
-            if (response.getButtonData() == ButtonBar.ButtonData.OK_DONE) {
-                boolean updated = updateCollegeInCSV(oldCode, newCode, name, CollegeFilePath);
-                if (updated) {
-                    displayNewValueOnCollegeEdit(oldCode);
-                    showAlert(Alert.AlertType.INFORMATION, "Success", "College updated successfully!");
-                    clearCollegeForm();
-                    editingCollegeId = null;
-                    updtCollege.setDisable(true);
-                    updtCollege.setVisible(false);
-                    regCollege.setDisable(false);
-                    regCollege.setVisible(true);
-                    setupCollegeTable();
-                } else {
-                    showAlert(Alert.AlertType.ERROR, "Error", "Failed to update college.");
+
+        if(inputExists(newCode, CollegeFilePath, 0)){
+            showAlert(Alert.AlertType.ERROR, "Error", "College code '" + oldCode + "' already exist.");
+        } else if (!inputExists(newCode, CollegeFilePath, 1)){
+            showAlert(Alert.AlertType.ERROR, "Error", "College name '" + name + "' already exist");
+        } else {
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Confirm Edit");
+            confirmationAlert.setHeaderText("Are you sure you want to edit this college?");
+            confirmationAlert.setContentText("Click OK to proceed or Cancel to abort.");
+            confirmationAlert.showAndWait().ifPresent(response -> {
+                if (response.getButtonData() == ButtonBar.ButtonData.OK_DONE) {
+                    boolean updated = updateCollegeInCSV(oldCode, newCode, name, CollegeFilePath);{
+                        if (updated) {
+                        displayNewValueOnCollegeEdit(oldCode);
+                        showAlert(Alert.AlertType.INFORMATION, "Success", "College updated successfully!");
+                        clearCollegeForm();
+                        editingCollegeId = null;
+                        updtCollege.setDisable(true);
+                        updtCollege.setVisible(false);
+                        regCollege.setDisable(false);
+                        regCollege.setVisible(true);
+                        setupCollegeTable();
+                        } else {
+                            showAlert(Alert.AlertType.ERROR, "Error", "Failed to update college.");
+                        }
+                    }
                 }
-            }
-        });     
+            });   
+        }
+  
     }
 
     private boolean updateStudentInCSV(String oldId, String newId, String lastName, String firstName, String sex, String year, String program, String college, String filePath) {
@@ -279,6 +306,15 @@ public class SceneController extends MainController implements Initializable{
                     } else {
                         lines.add(line);
                     }
+
+                    //if college do not exist, show alert and return false
+                    if (!inputExists(college, "/csv_files/College.csv", 0)) {
+                        showAlert(Alert.AlertType.ERROR, "Error", "College code " + college + " does not exist. Please register it first.");
+                        return false;
+                    } else if (!inputExists(program, "/csv_files/Program.csv", 0)) {
+                        showAlert(Alert.AlertType.ERROR, "Error", "Program '" + program + "' does not exist. Please register it first.");
+                        return false;
+                    }
                 }
             }
         } catch (IOException e) {
@@ -286,7 +322,7 @@ public class SceneController extends MainController implements Initializable{
             return false;
         }
     
-        // Only rewrite the file if the student was found
+        // only rewrite the file if the student was found
         if (found) {
             try (FileWriter writer = new FileWriter(filePath)) {
                 for (String l : lines) {
@@ -298,7 +334,7 @@ public class SceneController extends MainController implements Initializable{
                 return false;
             }
         }
-        return false; // Student with oldId wasn't found
+        return false;
     }
 
     private boolean updateProgramInCSV(String oldCode, String college, String code, String name, String filePath) {
@@ -420,7 +456,7 @@ public class SceneController extends MainController implements Initializable{
     // checks if fields are empty
     protected boolean isEmptyField(String... fields) {
         for (String field : fields) {
-           if (field == null || field.isBlank()) return true;
+            if (field == null || field.isBlank()) return true;
         }
         return false;
     }
@@ -519,7 +555,9 @@ public class SceneController extends MainController implements Initializable{
                 editBtn.setOnAction(event -> {
                     ObservableList<String> selectedRow = getTableView().getItems().get(getIndex());
                     System.out.println("Selected row: " + selectedRow); //pag click sa edit button, i print ang selected row
-                    if (tableType.equals("COLLEGE")) {
+                    if (tableType.equals("STUDENT")) {
+                        populateStudentForm(selectedRow);
+                    } else if (tableType.equals("COLLEGE")) {
                         populateCollegeForm(selectedRow);
                     } else if (tableType.equals("PROGRAM")) {
                         populateProgramForm(selectedRow);   
@@ -536,14 +574,13 @@ public class SceneController extends MainController implements Initializable{
                             ObservableList<String> selectedRow = getTableView().getItems().get(getIndex());
                             getTableView().getItems().remove(getIndex());
                             
-                            if (tableType.equals("COLLEGE")) {
-                                String collegeId = selectedRow.get(0); 
-                                displayNoneOnCollegeDeletion(collegeId);
+                            if (tableType.equals("STUDENT")) {
+                                deleteStudentRowFromCSV(selectedRow);
                             } else if (tableType.equals("PROGRAM")) {
-                                String programId = selectedRow.get(0); 
-                                displayNoneOnProgramDeletion(programId);
-                            }
-                            
+                                deleteProgramRowFromCSV(selectedRow);
+                            } else if (tableType.equals("COLLEGE")) {
+                                deleteCollegeRowFromCSV(selectedRow);
+                            }                            
                             deleteAction.accept(selectedRow);
                         }
                     });
@@ -657,7 +694,7 @@ public class SceneController extends MainController implements Initializable{
 
     private void deleteProgramRowFromCSV(ObservableList<String> rowToDelete) {
         if (rowToDelete.size() >= 2) {
-            deleteRowFromCSV(rowToDelete.get(1), ProgramFilePath);
+            deleteRowFromCSV(rowToDelete.get(0), ProgramFilePath);
         }
     }
 
@@ -670,6 +707,7 @@ public class SceneController extends MainController implements Initializable{
     private void deleteRowFromCSV(String idToDelete, String filePath) {
         List<String> lines = new ArrayList<>();
         boolean found = false;
+    
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -685,24 +723,34 @@ public class SceneController extends MainController implements Initializable{
             showAlert(Alert.AlertType.ERROR, "Error", "Error reading the CSV file for deletion.");
             return;
         }
-
+    
         if (found) {
             try (FileWriter writer = new FileWriter(filePath)) {
                 for (String line : lines) {
                     writer.write(line + "\n");
                 }
-                showAlert(Alert.AlertType.INFORMATION, "Success", "Item deleted successfully!");
-                if (filePath.contains("Students.csv")) setupStudentTable();
-                else if (filePath.contains("Program.csv")) setupProgramTable();
-                else if (filePath.contains("College.csv")) setupCollegeTable();
             } catch (IOException e) {
                 e.printStackTrace();
                 showAlert(Alert.AlertType.ERROR, "Error", "Error writing to the CSV file after deletion.");
+                return;
             }
-        } else {
-            showAlert(Alert.AlertType.WARNING, "Warning", "Item with ID/Code '" + idToDelete + "' not found for deletion.");
-        }
+    
+            // Handle cascading update if a college was deleted
+            if (filePath == CollegeFilePath) {
+                updateCsvReferenceToNone(StudentFilePath, 6, idToDelete);
+                updateCsvReferenceToNone(ProgramFilePath, 2, idToDelete);  
+                setupCollegeTable();
+                setupProgramTable();
+                setupStudentTable();
+            } else if (filePath == ProgramFilePath) {
+                updateCsvReferenceToNone(StudentFilePath, 5, idToDelete);
+                setupProgramTable();
+                setupStudentTable();
+            }
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Item deleted successfully!");
+        } 
     }
+    
 
     //for displaying csv files on tableview
     // can be used to reload tables
@@ -754,11 +802,11 @@ public class SceneController extends MainController implements Initializable{
     @FXML private Button searchCollegeButton;
 
     @FXML private void searchStudentDir(){
-        searchAndDisplayCSVResults(StudentFilePath, studentTable, searchStudent.getText(),0, 1, 2);
+        searchAndDisplayCSVResults(StudentFilePath, studentTable, searchStudent.getText(),0, 1, 2, 3, 4, 5, 6);
     }
 
     @FXML private void searchProgramDir() {
-        searchAndDisplayCSVResults(ProgramFilePath, programTable, searchProgram.getText(), 0, 1);
+        searchAndDisplayCSVResults(ProgramFilePath, programTable, searchProgram.getText(), 0, 1, 2);
     }
 
     @FXML private void searchCollegeDir() {
@@ -781,7 +829,7 @@ public class SceneController extends MainController implements Initializable{
         year.getItems().addAll("1", "2", "3", "4");
 
         populateTextField(studentCollege, "/csv_files/College.csv", 0);
-        populateTextField(studentProgram, "/csv_files/Program.csv", 1);
+        populateTextField(studentProgram, "/csv_files/Program.csv", 0);
 
         populateTextField(programCode, "/csv_files/Program.csv", 0);
         populateTextField(programName, "/csv_files/Program.csv", 1);
