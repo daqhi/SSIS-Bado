@@ -12,7 +12,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
@@ -20,6 +22,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Side;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableView;
@@ -288,5 +291,45 @@ public abstract class MainController {
             errorAlert.showAndWait();
         }
     }
+
+
+    //populate combobox with data from csv file
+    protected void populateComboBox(ComboBox<String> comboBox, String filePath, int columnIndex) {
+        List<String> items = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            boolean isFirstLine = true;
+            while ((line = br.readLine()) != null) {
+                if (isFirstLine) {
+                    isFirstLine = false; // Skip header line
+                    continue;
+                }
+                String[] split = line.split(",");
+                if (split.length > columnIndex) {
+                    items.add(split[columnIndex]);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        comboBox.setItems(FXCollections.observableArrayList(items));
+    }
+
+    protected Map<String, String> loadProgramMap(String programFilePath) {
+        Map<String, String> programMap = new HashMap<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(programFilePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                if (values.length >= 2) {
+                    programMap.put(values[0].trim(), values[0].trim());
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    return programMap;
+}
+
 
 }

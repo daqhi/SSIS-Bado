@@ -8,6 +8,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
@@ -46,14 +47,13 @@ public class SceneController extends MainController implements Initializable{
             @FXML private TextField lastName;
             @FXML private ComboBox<String> year;
             @FXML private ComboBox<String> sex;
-            @FXML private TextField studentCollege;
-            @FXML private TextField studentProgram;
+            @FXML private ComboBox<String> studentProgramName;
             @FXML private Button regStudent;
             @FXML private Button updtStudent;
             @FXML private Button clearStudentFormButton;
             private String editingStudentId;
         @FXML private Tab programReg;
-            @FXML private TextField progCollege;
+            @FXML private ComboBox<String> progCollege;
             @FXML private TextField programCode;
             @FXML private TextField programName;
             @FXML private Button regProgram;
@@ -74,24 +74,19 @@ public class SceneController extends MainController implements Initializable{
         String first = firstName.getText().trim();
         String gender = sex.getValue();
         String yearLvl = year.getValue();
-        String program = studentProgram.getText().trim();
-        String college = studentCollege.getText().trim();
+        String program = studentProgramName.getValue();
         
-        if (isEmptyField(id, last, first, gender, yearLvl, program, college)) { 
+        if (isEmptyField(id, last, first, gender, yearLvl, program)) { 
             showAlert(Alert.AlertType.ERROR, "Error", "Please fill in all required fields.");
         } else if (!id.matches("\\d{4}-\\d{4}")) { 
             showAlert(Alert.AlertType.ERROR, "Error", "Please follow ID Number format.\nFormat: YYYY-NNNN");
-        } else if (!inputExists(program, "/csv_files/Program.csv", 0) && !inputExists(college, "/csv_files/College.csv", 0)) {
-            showAlert(Alert.AlertType.ERROR, "Error", "Program '" + college + " and " + program + "' does not exist. Please register it first.");
-        } else if (!inputExists(college, "/csv_files/College.csv", 0)) {
-            showAlert(Alert.AlertType.ERROR, "Error", "College '" + college + "' does not exist. Please register it first.");
         } else if (!inputExists(program, "/csv_files/Program.csv", 0)){
             showAlert(Alert.AlertType.ERROR, "Error", "Program '" + program + "' does not exist. Please register it first.");
         } else if (isValueTakenInCSV(id, 0, StudentFilePath)){ // checks for duplicates
             showAlert(Alert.AlertType.ERROR, "Error", "ID Number already exists. \nFailed to register student.");
         } else { // asks user for confirmation before saving
             showAlertAndRegister(
-                String.format("%s,%s,%s,%s,%s,%s,%s\n", id, last, first, gender, yearLvl, program, college),
+                String.format("%s,%s,%s,%s,%s,%s\n", id, last, first, gender, yearLvl, program), //dapat program code ang mudisplay sa table
                 StudentFilePath,
                 "Student registered successfully!",
                 this::clearStudentForm);
@@ -100,7 +95,7 @@ public class SceneController extends MainController implements Initializable{
     }
 
     @FXML private void registerProgram() {
-        String college = progCollege.getText();
+        String college = progCollege.getValue();
         String progName = programName.getText();
         String progCode = programCode.getText();
 
@@ -155,10 +150,9 @@ public class SceneController extends MainController implements Initializable{
         String first = firstName.getText().trim();
         String gender = sex.getValue();
         String yearLvl = year.getValue();
-        String program = studentProgram.getText().trim();
-        String college = studentCollege.getText().trim();
-
-        if (isEmptyField(id, last, first, gender, yearLvl, program, college)) {
+        String program = studentProgramName.getValue();
+        
+        if (isEmptyField(id, last, first, gender, yearLvl, program)) {
             showAlert(Alert.AlertType.ERROR, "Error", "Please fill in all required fields.");
             return;
         } else if (!id.matches("\\d{4}-\\d{4}")) {
@@ -174,7 +168,8 @@ public class SceneController extends MainController implements Initializable{
         confirmationAlert.setContentText("Click OK to proceed or Cancel to abort.");
         confirmationAlert.showAndWait().ifPresent(response -> {
             if (response.getButtonData() == ButtonBar.ButtonData.OK_DONE) {
-                boolean updated = updateStudentInCSV(oldId, id, last, first, gender, yearLvl, program, college, StudentFilePath);
+                boolean updated = updateStudentInCSV(oldId, id, last, first, gender, yearLvl, program, StudentFilePath);
+                //
                 if (updated) {
                     showAlert(Alert.AlertType.INFORMATION, "Success", "Student updated successfully!");
                     clearStudentForm();
@@ -192,7 +187,7 @@ public class SceneController extends MainController implements Initializable{
     }
 
     @FXML private void updateProgram() {
-        String college = progCollege.getText().trim();
+        String college = progCollege.getValue().trim();
         String code = programCode.getText().trim();
         String name = programName.getText().trim();
 
@@ -282,37 +277,41 @@ public class SceneController extends MainController implements Initializable{
   
     }
 
-    private boolean updateStudentInCSV(String oldId, String newId, String lastName, String firstName, String sex, String year, String program, String college, String filePath) {
+    private boolean updateStudentInCSV(String oldId, String newId, String lastName, String firstName, String sex, String year, String programName, String filePath) {
         List<String> lines = new ArrayList<>();
         boolean found = false;
-    
+        String collegeCode = null;
+        String programCode = null;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(ProgramFilePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                if (values.length > 0) {
+                    if (programName.equals(values[1].trim())) { 
+                        String college = values[2].trim();
+                        collegeCode = college; 
+                        programCode = values[0].trim(); 
+                        break;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
                 if (values.length > 0) {
                     String currentId = values[0].trim();
-                
-                    // checks if newId already exists (and it's not the oldId being updated)
-                    if (currentId.equals(newId) && !currentId.equals(oldId)) {
-                        showAlert(Alert.AlertType.ERROR, "Duplicate ID", "ID Number already exists\nFailed to update student.");
-                        return false;
-                    }
                     
                     if (currentId.equals(oldId)) { // replaces the line with the updated info
-                        lines.add(String.format("%s,%s,%s,%s,%s,%s,%s", newId, lastName, firstName, sex, year, program, college));
+                        lines.add(String.format("%s,%s,%s,%s,%s,%s,%s\n", newId, lastName, firstName, sex, year, programCode,collegeCode));
                         found = true;
                     } else {
                         lines.add(line);
-                    }
-
-                    //if college do not exist, show alert and return false
-                    if (!inputExists(college, "/csv_files/College.csv", 0)) {
-                        showAlert(Alert.AlertType.ERROR, "Error", "College code " + college + " does not exist. Please register it first.");
-                        return false;
-                    } else if (!inputExists(program, "/csv_files/Program.csv", 0)) {
-                        showAlert(Alert.AlertType.ERROR, "Error", "Program '" + program + "' does not exist. Please register it first.");
-                        return false;
                     }
                 }
             }
@@ -339,18 +338,36 @@ public class SceneController extends MainController implements Initializable{
     private boolean updateProgramInCSV(String oldCode, String college, String code, String name, String filePath) {
         List<String> lines = new ArrayList<>();
         boolean found = false;
+
+        String programName = getProgramName(oldCode); // get program name from csv file
+        
+        if(programName == null){
+            showAlert(Alert.AlertType.ERROR, "Error", "Program name for code '" + oldCode + "' could not be found.");
+            return false;
+        }
+
+
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
-                if (values.length > 1 && values[0].trim().equals(oldCode)) { 
-                    lines.add(String.format("%s,%s,%s", code, name, college));
-                    found = true;
-                } else {
-                    lines.add(line);
+                if (values.length > 0) {
+                    String currentId = values[0].trim();
+    
+                    if (currentId.equals(code) && !currentId.equals(oldCode)) {
+                        showAlert(Alert.AlertType.ERROR, "Duplicate ID", "ID Number already exists\nFailed to update student.");
+                        return false;
+                    }
+    
+                    if (currentId.equals(oldCode)) {
+                        // Replace with updated info, using programName instead of code
+                        lines.add(String.format("%s,%s,%s,%s,%s,%s,%s", code, lastName, firstName, sex, year, programName, college));
+                        found = true;
+                    } else {
+                        lines.add(line);
+                    }
                 }
             }
-            
         } catch (IOException e) {
             e.printStackTrace();
             return false;
@@ -404,6 +421,22 @@ public class SceneController extends MainController implements Initializable{
         return false;
     }
 
+    private String getProgramName(String programCode) {
+        try (BufferedReader br = new BufferedReader(new FileReader("csv_files/Program.csv"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                if (values.length >= 2 && values[0].trim().equals(programCode)) {
+                    return values[1].trim(); // return program name
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null; // not found
+    }
+    
+
 
     private void clearStudentForm() {
         idNum.clear();
@@ -411,8 +444,7 @@ public class SceneController extends MainController implements Initializable{
         firstName.clear();
         sex.setValue(null);
         year.setValue(null);
-        studentProgram.clear();
-        studentCollege.clear();
+        studentProgramName.setValue(null);
     }
 
     private void clearProgramForm() {
@@ -640,8 +672,7 @@ public class SceneController extends MainController implements Initializable{
             firstName.setText(selectedRow.get(2));
             sex.setValue(selectedRow.get(3));
             year.setValue(selectedRow.get(4));
-            studentProgram.setText(selectedRow.get(5));
-            studentCollege.setText(selectedRow.get(6));
+            studentProgramName.setValue(selectedRow.get(5));
 
             updtStudent.setDisable(false);
             updtStudent.setVisible(true);
@@ -658,7 +689,7 @@ public class SceneController extends MainController implements Initializable{
             editingProgramId = selectedRow.get(0); 
             programCode.setText(selectedRow.get(0));
             programName.setText(selectedRow.get(1));
-            progCollege.setText(selectedRow.get(2));
+            progCollege.setValue(selectedRow.get(2));
 
             updtProgram.setDisable(false);
             updtProgram.setVisible(true);
@@ -753,19 +784,32 @@ public class SceneController extends MainController implements Initializable{
 
     //for displaying csv files on tableview
     // can be used to reload tables
+    //program name mugawas sa register
+    //program code mudisplay sa table
     private void setupStudentTable() {
-        studentTable.setItems(loadCSV(StudentFilePath));
+        ObservableList<ObservableList<String>> studentData = loadCSV(StudentFilePath);
+        studentTable.setItems(studentData);
+
+        Map<String, String> programMap = loadProgramMap(ProgramFilePath);
 
         idColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().get(0)));
         lastNameColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().get(1)));
         firstNameColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().get(2)));
         sexColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().get(3)));
         yearColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().get(4)));
-        studProgramCodeColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().get(5)));
+
+        
+        studProgramCodeColumn.setCellValueFactory(data -> {
+            String code = data.getValue().get(5);
+            String name = programMap.getOrDefault(code, code); 
+            return new SimpleStringProperty(name);
+        });
+
         studCollegeCodeColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().get(6)));
 
         setupActionButton(studentActionColumn, 7, StudentFilePath, this::populateStudentForm, this::deleteStudentRowFromCSV, "STUDENT");
     }
+
 
     private void setupProgramTable() {
         programTable.setItems(loadCSV(ProgramFilePath));
@@ -827,12 +871,12 @@ public class SceneController extends MainController implements Initializable{
         sex.getItems().addAll("Male", "Female");
         year.getItems().addAll("1", "2", "3", "4");
 
-        populateTextField(studentCollege, "/csv_files/College.csv", 0);
-        populateTextField(studentProgram, "/csv_files/Program.csv", 0);
+        //populateTextField(studentCollege, "/csv_files/College.csv", 0);
+        populateComboBox(studentProgramName, ProgramFilePath, 1);
 
         populateTextField(programCode, "/csv_files/Program.csv", 0);
         populateTextField(programName, "/csv_files/Program.csv", 1);
-        populateTextField(progCollege, "/csv_files/College.csv", 0);
+        populateComboBox(progCollege, CollegeFilePath, 0);
 
         populateTextField(collegeCode, "/csv_files/College.csv", 0);
         populateTextField(collegeName, "/csv_files/College.csv", 1);

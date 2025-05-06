@@ -104,7 +104,7 @@
                                     <Insets top="5.0" />
                                  </GridPane.margin>
                               </Text>
-                              <Text fill="#007ea7" strokeType="OUTSIDE" strokeWidth="0.0" text="College" GridPane.rowIndex="10">
+                              <Text fill="#007ea7" strokeType="OUTSIDE" strokeWidth="0.0" text="Program Name" GridPane.rowIndex="10">
                                  <font>
                                     <Font name="System Bold" size="12.0" />
                                  </font>
@@ -112,16 +112,7 @@
                                     <Insets top="5.0" />
                                  </GridPane.margin>
                               </Text>
-                              <Text fill="#007ea7" strokeType="OUTSIDE" strokeWidth="0.0" text="Program" GridPane.rowIndex="12">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                                 <GridPane.margin>
-                                    <Insets top="5.0" />
-                                 </GridPane.margin>
-                              </Text>
-                              <TextField fx:id="studentCollege" promptText="Enter College" GridPane.rowIndex="11" />
-                              <TextField fx:id="studentProgram" promptText="Enter Program" GridPane.rowIndex="13" />
+                              <ComboBox fx:id="studentProgramName" prefHeight="44.0" prefWidth="213.0" promptText="Select Program Name" GridPane.rowIndex="11" />
                            </children>
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" top="20.0" />
@@ -238,7 +229,6 @@
                                     <Font name="System Bold" size="12.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="progCollege" promptText="Enter College Code" GridPane.rowIndex="1" />
                               <TextField fx:id="programCode" promptText="Enter Program Code" GridPane.rowIndex="3" />
                               <TextField fx:id="programName" promptText="Enter Program Name" GridPane.rowIndex="5" />
                               <Text fill="#007ea7" strokeType="OUTSIDE" strokeWidth="0.0" text="Program Code" GridPane.rowIndex="2">
@@ -257,6 +247,7 @@
                                     <Insets top="5.0" />
                                  </GridPane.margin>
                               </Text>
+                              <ComboBox fx:id="progCollege" prefHeight="26.0" prefWidth="328.0" promptText="Choose College" GridPane.rowIndex="1" />
                            </children>
                            <VBox.margin>
                               <Insets left="20.0" right="20.0" top="20.0" />
