@@ -204,7 +204,7 @@ public class SceneController extends MainController implements Initializable{
 
         if(inputExists(code, ProgramFilePath, 0)){
             showAlert(Alert.AlertType.ERROR, "Error", "Program code '" + oldCode + "' already exist.");
-        } else if (!inputExists(name, ProgramFilePath, 1)){
+        } else if (inputExists(name, ProgramFilePath, 1)){
             showAlert(Alert.AlertType.ERROR, "Error", "Program name '" + name + "' already exist");
         } else {
             Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -232,7 +232,6 @@ public class SceneController extends MainController implements Initializable{
                             showAlert(Alert.AlertType.ERROR, "Error", "Failed to update program.");
                         }
                     }
-    
                 } else {
                     System.out.println("Update canceled by user.");
                 }        
@@ -253,7 +252,7 @@ public class SceneController extends MainController implements Initializable{
 
         if(inputExists(newCode, CollegeFilePath, 0)){
             showAlert(Alert.AlertType.ERROR, "Error", "College code '" + oldCode + "' already exist.");
-        } else if (!inputExists(newCode, CollegeFilePath, 1)){
+        } else if (inputExists(newCode, CollegeFilePath, 1)){
             showAlert(Alert.AlertType.ERROR, "Error", "College name '" + name + "' already exist");
         } else {
             Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
