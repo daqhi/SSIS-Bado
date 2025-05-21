@@ -1,5 +1,5 @@
 ID Num,LastName,First,Sex,Year,Program,College
-2023-0001,Dela Cruz,Jose,Male,1,progCode1,collegeCode20
+2023-0001,Dela Cruz,Jose,Male,1,progCode1,collegeCode1
 2023-0002,Santos,Maria May,Female,2,progCode2,collegeCode2
 2023-0003,Reyes,Jose,Male,3,progCode3,collegeCode3
 2023-0004,Garcia,Ana,Female,4,progCode4,collegeCode4
@@ -29,5 +29,3 @@ ID Num,LastName,First,Sex,Year,Program,College
 2023-0028,Ocampo,Antonella,Female,4,progCode10,collegeCode7
 2023-0029,Navarro,Adrian,Male,1,progCode11,collegeCode1
 2023-0030,Cordero,Allison,Female,2,progCode12,collegeCode2
-2022-0427,Bado,Elia Fel,Female,3,progName12,collegeCode1
-2022-0123,asd,sdfasdf,Male,2,progCode9,collegeCode2
