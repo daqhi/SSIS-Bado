@@ -568,10 +568,10 @@
                            <children>
                               <TableView fx:id="programTable" prefHeight="168.0" prefWidth="631.0" GridPane.rowIndex="1">
                                  <columns>
-                                    <TableColumn fx:id="progCollegeColumn" prefWidth="85.59997403621674" text="College Code" />
-                                    <TableColumn fx:id="progProgramCodeColumn" prefWidth="104.00000762939453" text="Program Code" />
-                                    <TableColumn fx:id="progProgramNameColumn" prefWidth="363.1999206542969" text="Program Name" />
-                                    <TableColumn fx:id="programActionColumn" prefWidth="295.99993896484375" />
+                                    <TableColumn fx:id="progCollegeColumn" prefWidth="139.20001828670502" text="College Code" />
+                                    <TableColumn fx:id="progProgramCodeColumn" prefWidth="210.39996337890625" text="Program Code" />
+                                    <TableColumn fx:id="progProgramNameColumn" prefWidth="193.59982299804688" text="Program Name" />
+                                    <TableColumn fx:id="programActionColumn" prefWidth="307.20001220703125" />
                                  </columns>
                               </TableView>
                               <GridPane>

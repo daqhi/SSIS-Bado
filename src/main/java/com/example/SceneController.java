@@ -231,6 +231,8 @@ public class SceneController extends MainController implements Initializable{
                             regProgram.setVisible(true);
                             setupProgramTable();
                             setupStudentTable();
+                            updateComboBoxItems(studentProgramName, ProgramFilePath, 1);
+                            populateComboBox(studentProgramName, ProgramFilePath, 1);
                         } else {
                             showAlert(Alert.AlertType.ERROR, "Error", "Failed to update program.");
                         }
@@ -265,15 +267,17 @@ public class SceneController extends MainController implements Initializable{
                 if (response.getButtonData() == ButtonBar.ButtonData.OK_DONE) {
                     boolean updated = updateCollegeInCSV(oldCode, newCode, name, CollegeFilePath);{
                         if (updated) {
-                        displayNewValueOnCollegeEdit(oldCode);
-                        showAlert(Alert.AlertType.INFORMATION, "Success", "College updated successfully!");
-                        clearCollegeForm();
-                        editingCollegeId = null;
-                        updtCollege.setDisable(true);
-                        updtCollege.setVisible(false);
-                        regCollege.setDisable(false);
-                        regCollege.setVisible(true);
-                        setupCollegeTable();
+                            displayNewValueOnCollegeEdit(oldCode);
+                            showAlert(Alert.AlertType.INFORMATION, "Success", "College updated successfully!");
+                            clearCollegeForm();
+                            editingCollegeId = null;
+                            updtCollege.setDisable(true);
+                            updtCollege.setVisible(false);
+                            regCollege.setDisable(false);
+                            regCollege.setVisible(true);
+                            setupCollegeTable();
+                            updateComboBoxItems(progCollege, CollegeFilePath, 0);
+                            populateComboBox(progCollege, CollegeFilePath, 0);
                         } else {
                             showAlert(Alert.AlertType.ERROR, "Error", "Failed to update college.");
                         }
@@ -344,6 +348,7 @@ public class SceneController extends MainController implements Initializable{
     private boolean updateProgramInCSV(String oldCode, String college, String code, String name, String filePath) {
         List<String> lines = new ArrayList<>();
         boolean found = false;
+        String newProgName = programName.getText().trim();
 
         String programName = getProgramName(oldCode); // get program name from csv file
         
@@ -366,7 +371,7 @@ public class SceneController extends MainController implements Initializable{
     
                     if (currentId.equals(oldCode)) {
                         // Replace with updated info, using programName instead of code
-                        lines.add(String.format("%s,%s,%s", code, programName, college));
+                        lines.add(String.format("%s,%s,%s", code, newProgName, college));
                         found = true;
                     } else {
                         lines.add(line);
@@ -907,8 +912,8 @@ public class SceneController extends MainController implements Initializable{
         sex.getItems().addAll("Male", "Female");
         year.getItems().addAll("1", "2", "3", "4");
 
-        //populateTextField(studentCollege, "/csv_files/College.csv", 0);
         populateComboBox(studentProgramName, ProgramFilePath, 1);
+        //updateComboBoxItems(studentProgramName, ProgramFilePath, 1);
 
         populateTextField(programCode, "/csv_files/Program.csv", 0);
         populateTextField(programName, "/csv_files/Program.csv", 1);

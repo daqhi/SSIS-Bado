@@ -13,8 +13,10 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
@@ -293,43 +295,65 @@ public abstract class MainController {
     }
 
 
-    //populate combobox with data from csv file
-    protected void populateComboBox(ComboBox<String> comboBox, String filePath, int columnIndex) {
-        List<String> items = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+    protected Map<String, String> loadProgramMap(String programFilePath) {
+        Map<String, String> programMap = new HashMap<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(programFilePath))) {
             String line;
             boolean isFirstLine = true;
+
             while ((line = br.readLine()) != null) {
                 if (isFirstLine) {
                     isFirstLine = false; // Skip header line
                     continue;
                 }
-                String[] split = line.split(",");
-                if (split.length > columnIndex) {
-                    items.add(split[columnIndex]);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        comboBox.setItems(FXCollections.observableArrayList(items));
-    }
-
-    protected Map<String, String> loadProgramMap(String programFilePath) {
-        Map<String, String> programMap = new HashMap<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(programFilePath))) {
-            String line;
-            while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
                 if (values.length >= 2) {
-                    programMap.put(values[0].trim(), values[0].trim());
+                    String code = values[0].trim();
+                    String name = values[1].trim();
+                    programMap.put(code, name);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-    return programMap;
-}
+
+        return programMap;
+    }
 
 
+    private List<String> loadUniqueColumnItems(String filePath, int columnIndex) {
+        Set<String> uniqueItems = new LinkedHashSet<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            boolean isFirstLine = true;
+
+            while ((line = br.readLine()) != null) {
+                if (isFirstLine) {
+                    isFirstLine = false;
+                    continue;
+                }
+                String[] split = line.split(",");
+                if (split.length > columnIndex) {
+                    uniqueItems.add(split[columnIndex].trim());
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return new ArrayList<>(uniqueItems);
+    }
+
+    protected void updateComboBoxItems(ComboBox<String> comboBox, String filePath, int columnIndex) {
+        List<String> items = loadUniqueColumnItems(filePath, columnIndex);
+        comboBox.getItems().setAll(items);
+    }
+
+
+    protected void populateComboBox(ComboBox<String> comboBox, String filePath, int columnIndex) {
+        // Just populate once on startup
+        List<String> items = loadUniqueColumnItems(filePath, columnIndex);
+        comboBox.setItems(FXCollections.observableArrayList(items));
+    }
 }
